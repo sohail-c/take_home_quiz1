@@ -155,7 +155,7 @@ void test_is_prime() {
  *              https://en.wikipedia.org/wiki/Greatest_common_divisor#Calculation
  */
 // use the Euclidean algorithm to find the greatest common divisor of two ints (numerator and denominator)
-int euclidean_algorithm(int a, int b) { //https://en.wikipedia.org/wiki/Greatest_common_divisor#Calculation
+int euclidean_algorithm(int a, int b) { // a / b; https://en.wikipedia.org/wiki/Greatest_common_divisor#Calculation
     if (b == 0) {
         return a;
     }
@@ -175,9 +175,17 @@ int* reduce_fraction(int fraction[]) { // return a pointer that points to the ad
     fraction[1] = denominator / gcd;
     return fraction;
 }
-// test - NEED TO FIGURE OUT HOW TO TEST IT !!!
+// TODO: NEED TO FIGURE OUT HOW TO TEST IT !!!
 void test_reduce_fraction() {
     printf("Testing is_prime Function: \n");
+    // 2/4 -> 1/2
+    // 4/2 -> 2/1
+    // 6/8 -> 3/4
+    // 30/45 -> 2/3
+    // 6/6 -> 1/1
+
+    // use methods from in-class demo but add more tests, e.g, 1/0 and 5/5 etc
+
 }
 
 
