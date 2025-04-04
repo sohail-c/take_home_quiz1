@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-
 /*
  *
  *      Question #1: Powers of Two
@@ -167,25 +166,30 @@ int euclidean_algorithm(int a, int b) { // a / b; https://en.wikipedia.org/wiki/
 int* reduce_fraction(int fraction[]) { // return a pointer that points to the address of the array
     int numerator = fraction[0];
     int denominator = fraction[1];
-    printf("Original Fraction:\t %d/%d", numerator, denominator);
+    //printf("Original Fraction:\t %d/%d", numerator, denominator);
     // find the greatest common factor (GCF) / greatest common divisor (GCD) in order to reduce both terms
     int gcd = euclidean_algorithm(numerator, denominator);
-    printf("\n\t(Greatest Common Divisor) GCD is: %d\n", gcd);
+    //printf("\n\t(Greatest Common Divisor) GCD is: %d\n", gcd);
     fraction[0] = numerator / gcd;
     fraction[1] = denominator / gcd;
     return fraction;
 }
-// TODO: NEED TO FIGURE OUT HOW TO TEST IT !!!
+// test reduce_fraction and euclidean_algorithm
 void test_reduce_fraction() {
-    printf("Testing is_prime Function: \n");
-    // 2/4 -> 1/2
-    // 4/2 -> 2/1
-    // 6/8 -> 3/4
-    // 30/45 -> 2/3
-    // 6/6 -> 1/1
-
-    // use methods from in-class demo but add more tests, e.g, 1/0 and 5/5 etc
-
+    printf("Testing reduce_fraction Function: \n");
+    int inputs[6][2] = {{2,4}, {4,2} , {6,8}, {30,45}, {6,6},{0,1}};
+    int expected[6][2] = {{1,2}, {2,1} , {3,4}, {2,3}, {1,1},{0,1}};
+    bool pass = true;
+    for (int i = 0; i < 6; i++) {
+        int *actual = reduce_fraction(inputs[i]);
+        if (!(actual[0] == expected[i][0] && actual[1] == expected[i][1])) {
+            pass = false;
+            printf("\t\tFAILS on %d/%d\n", inputs[i][0], inputs[i][1]);
+        }
+    }
+    if (pass == true) {
+        printf("\t\tPASS\n");
+    }
 }
 
 
@@ -197,31 +201,15 @@ int main() {
         currently set to test is_power_of_two_loop. need to change function call in functions in order to test
         is_power_of_two
      */
+    cout << "\n\n" << endl;
     test_powers_of_two_fn();
     test_powers_of_two_fp();
-    printf("\n\n");
     /*  test is_prime code with the first fifty prime numbers
         and first fifty composite numbers
     */
     test_is_prime();
-
-    printf("\n\n");
-
-
-    //bool result = is_prime(8);
-    //printf("Result: %d\n", result);
-
-    /*
-        test reducing fractions code
-
-     */
-
-    printf("\n\n");
+    /* test reduce_fraction code with a couple of different fractions
+    */
     test_reduce_fraction();
-
-    int fraction2[2] = {12,14};
-    int* p_fraction = reduce_fraction(fraction2);
-    printf("Reduced Fraction:\t %d/%d", fraction2[0], fraction2[1]);
-
     return 0;
 }
