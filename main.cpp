@@ -39,20 +39,20 @@ bool is_power_of_two_loop(int num) {
 // test for false negatives
 void test_powers_of_two_fn() {
     int test;
-    printf("Testing is_power_of_two (or is_power_of_two_loop) Function: \n");
-    printf("\tTesting even powers of 2 up to 2^29:\n");
+    cout << "TESTING is_power_of_two (or is_power_of_two_loop) Function: " << endl;
+    cout << "\t>Testing even powers of 2 up to 2^29:" << endl;
     bool flag = true;
     for (int i = 0; i < 30; i++) {
         test = pow(2,i);
         bool result = is_power_of_two_loop(test);
         if (result == false) {
             flag == false;
-            printf("\t\tFAILS on %d\n", test);
+            cout << "\t\t>FAILS on " << test << endl;
             break;
         }
     }
     if (flag == true) {
-        printf("\t\tPASS\n");
+        cout << "\t\t>PASS" << endl;
     }
 }
 // test for false positives
@@ -60,19 +60,19 @@ void test_powers_of_two_fp() {
     // since odd numbers can't be powers of 2, generate some # of odds numbers and make sure no false positives
     // / that the function doesn't think they are powers of two
     int test;
-    printf("\tTesting for false positives (3^1 up to 3^29): \n");
+    cout << "\t>Testing for false positives (3^1 up to 3^29): " << endl;
     bool flag = false;
     for (int i = 1; i < 30; i++) {
         test = pow(3,i);
         bool result = is_power_of_two_loop(test);
         if (result == true) {
             flag == false;
-            printf("\t\tFAILS on %d\n", test);
+            cout << "\t\t>FAILS on " << test << endl;
             break;
         }
     }
     if (flag == false) {
-        printf("\t\tPASS\n");
+        cout << "\t\t>PASS" << endl;
     }
 }
 
@@ -111,7 +111,7 @@ void test_is_prime() {
     *            first fifty primes: https://prime-numbers.info/list/first-50-primes#list
     *            first fifty composite numbers: https://en.wikipedia.org/wiki/Composite_number
     */
-    printf("Testing is_prime Function: \n");
+    cout << "TESTING is_prime Function: " << endl;
     int first_fifty_primes[50] = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
         67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167,
         173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229};
@@ -123,19 +123,19 @@ void test_is_prime() {
     for (int i = 0; i < 50; i++) {
         if (!is_prime(first_fifty_primes[i])) {
             pass = false;
-            printf("\t\tFAILS on %d\n", first_fifty_primes[i]);
+            cout << "\t\t>FAILS on " << first_fifty_primes[i] << endl;
             break;
         }
     }
     for (int j = 0; j < 50; j++) {
         if (is_prime(first_fifty_composites[j])) {
             pass = false;
-            printf("\t\tFAILS on %d\n", first_fifty_composites[j]);
+            cout << "\t\t>FAILS on " << first_fifty_composites[j] << endl;
             break;
         }
     }
     if (pass == true) {
-        printf("\t\tPASS\n");
+        cout << "\t\t>PASS" << endl;
     }
 
 
@@ -164,6 +164,9 @@ int euclidean_algorithm(int a, int b) { // a / b; https://en.wikipedia.org/wiki/
 }
 // reduce the fraction (calls euclidean_algorithm)
 int* reduce_fraction(int fraction[]) { // return a pointer that points to the address of the array
+    if (fraction[1] == 0) {
+        cout << "ERROR. Invalid Fraction (0 denominator)" << endl;
+    }
     int numerator = fraction[0];
     int denominator = fraction[1];
     //printf("Original Fraction:\t %d/%d", numerator, denominator);
@@ -176,19 +179,20 @@ int* reduce_fraction(int fraction[]) { // return a pointer that points to the ad
 }
 // test reduce_fraction and euclidean_algorithm
 void test_reduce_fraction() {
-    printf("Testing reduce_fraction Function: \n");
-    int inputs[6][2] = {{2,4}, {4,2} , {6,8}, {30,45}, {6,6},{0,1}};
-    int expected[6][2] = {{1,2}, {2,1} , {3,4}, {2,3}, {1,1},{0,1}};
+    cout << "TESTING reduce_fraction Function: " << endl;
+    int inputs[7][2] = {{2,4}, {4,2} , {6,8}, {30,45}, {6,6},{0,1}, {-1,5}};
+    int expected[7][2] = {{1,2}, {2,1} , {3,4}, {2,3}, {1,1},{0,1}, {-1,5}};
     bool pass = true;
     for (int i = 0; i < 6; i++) {
         int *actual = reduce_fraction(inputs[i]);
         if (!(actual[0] == expected[i][0] && actual[1] == expected[i][1])) {
             pass = false;
-            printf("\t\tFAILS on %d/%d\n", inputs[i][0], inputs[i][1]);
+            cout << "\t\t>FAILS on " << inputs[i][0] << "/" << inputs[i][1] << endl;
+            //printf("\t\t>FAILS on %d/%d\n", inputs[i][0], inputs[i][1]);
         }
     }
     if (pass == true) {
-        printf("\t\tPASS\n");
+        cout << "\t\t>PASS" << endl;
     }
 }
 
