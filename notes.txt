@@ -1,0 +1,25 @@
+NOTES FOR 342 (2025-04-03)
+"-\_("/)_/- it works on my machine" shirt prof is wearing is great - find out where to get something like it.
+
+comments criteria:
+	*make sure there is no space for people to misunderstand what the code does.
+	*comments should be about the why
+	*"if you have any constant in code, want to put a comment saying where that number comes from"
+GIT/GITHUB
+	git commit saves local version
+	push - updates repo
+STEPS FOR PROJS/HW/ETC:
+	first step: create proj
+	2nd step: setup version control
+	3rd step: create a repo on github
+note to self: Figure out how to do this on the terminal
+
+finish writing tests for reduce_fraction
+
+add condition to make sure x/0 returns an error for reduce fractions & that negative stays if given a negative fraction
+
+revisit lecture to see to_string implementation to make sure did it correctly
+
+good quiz question: why run test first / why write test first
+
+MAKE IT WORK FIRST ! then optimize
